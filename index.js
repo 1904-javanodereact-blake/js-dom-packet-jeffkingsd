@@ -89,18 +89,18 @@ getCustomAttribute();
 // Put the sum in the <span> element.
 // If values cannot be added, put "Cannot add" in the <span> element
 
-document.getElementById('num1').addEventListener("change", sum());
-document.getElementById('num2').addEventListener("change", sum());
+document.getElementById('num1').addEventListener('change', sum);
+document.getElementById('num2').addEventListener('change', sum);
 
 function sum() {
+    console.log('HELLO WORLD!')
     const num3 = parseInt(document.getElementById('num1').value) + parseInt(document.getElementById('num2').value);
     if (!num3) {
-     document.getElementById('sum').innerText = 'Cannot be added';
+     document.getElementById('sum').textContent = 'Cannot be added';
     } else {
-     document.getElementById('sum').innerText = num3;
+     document.getElementById('sum').textContent = num3;
     };
 }
-sum();
 
 // 7. Skills Event
 // When user selects a skill, create an alert with a message similar to:
@@ -134,8 +134,8 @@ function favColor() {
                 setcolor[i].style.backgroundColor=newcolor;
             }
         });
-        }
     }
+}
 favColor();
 
 // 9. Show/Hide Event
@@ -145,18 +145,18 @@ favColor();
 // const hoverNames = document.getElementById();
 
 function showhide() {
-const hoverNames = document.getElementsByClassName('empName');
-for (let i = 0; i < hoverNames.length; i++) {
-    if (hoverNames[i].style.visibility !== 'visible') {
+    const hoverNames = document.getElementsByClassName('empName');
+    for (let i = 0; i < hoverNames.length; i++) {
+       
             hoverNames[i].addEventListener("mouseover", (e) => {
             console.log(e.target.style.visibility='hidden');
             });
-    } else {
+
             hoverNames[i].addEventListener("mouseout", (e) => {
             console.log(e.target.style.visibility='visible');
             });
+        
     }
-}
 }
 showhide();
 
@@ -199,5 +199,19 @@ delay();
 // This function should traverse every node in the DOM. Use recursion.
 // On each node, call func(node).
 function walkTheDOM(node, func) {
+    
+    func(node);
+    node = node.firstChild;
+    while(node) {
+        walkTheDOM(node, func);
+        node = node.nextSibling;
+    }
 }
-// walkTheDOM();
+
+walkTheDOM(document.body, function(node){
+    if (node.tagName === undefined) {
+
+    } else {
+    console.log(node.tagName);
+    }
+});
