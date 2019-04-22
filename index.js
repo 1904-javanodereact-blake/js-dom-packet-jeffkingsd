@@ -8,10 +8,10 @@
 
 function getUSA() {
     const bubblespan = document.getElementsByTagName('*')
-    for(let i = 0; i < bubblespan.length; i++) {
+    for (let i = 0; i < bubblespan.length; i++) {
         if (bubblespan[i].nextSibling) {
             if (bubblespan[i].innerText === 'USA') {
-                console.log (bubblespan[i].innerText);
+                console.log(bubblespan[i].innerText);
             }
         }
     }
@@ -27,9 +27,8 @@ function getPeopleInSales() {
     const peoplerow = people.rows;
     for (let i = 0; i < peoplerow.length; i++ ) {
         const checksale = peoplerow[i].cells[1].innerText;
-        if ( checksale !== 'Sales')
-        {
-            // Don't print out the others!
+        if (checksale !== 'Sales') {
+
         } else {
             console.log(peoplerow.item(i).innerText);
         }
@@ -44,9 +43,9 @@ getPeopleInSales();
 
 function getAnchorChildren() {
     const bubblespan = document.getElementsByTagName('span');
-        for(let i = 0; i < bubblespan.length; i++){
+    for (let i = 0; i < bubblespan.length; i++) {
         console.log(bubblespan.item(i).innerText);
-        }
+    }
 }
 getAnchorChildren();
 
@@ -71,7 +70,7 @@ getHobbies();
 // Print the element that has the attribute.
 
 function getCustomAttribute() {
-    const elecust = document.querySelectorAll('[data-customAttr]'); 
+    const elecust = document.querySelectorAll('[data-customAttr]');
     for (let i = 0; i < elecust.length; i++) {
         if (elecust.item(i).innerText) {
              console.log(elecust.item(i).innerText);
@@ -112,7 +111,7 @@ sum();
 function setAlert() {
     const first = document.getElementsByName('skills')[0].selectedIndex;
     const second = document.getElementsByName('skills')[0].options;
- alert('Are you sure ' +  second[first].innerText + ' is one of your skills?');
+    alert ('Are you sure ' +  second[first].innerText + ' is one of your skills?');
 }
 setAlert();
 
@@ -132,9 +131,9 @@ function favColor() {
             alert(`So you like ${newcolor} more than ${oldcolor}?`);
             oldcolor = newcolor;
             for (let i = 0; i < setcolor.length; i++) {
-                    setcolor[i].style.backgroundColor=newcolor;
-                }
-        })  
+                setcolor[i].style.backgroundColor=newcolor;
+            }
+        });
         }
     }
 favColor();
@@ -147,8 +146,8 @@ favColor();
 
 function showhide() {
 const hoverNames = document.getElementsByClassName('empName');
-for ( let i = 0; i < hoverNames.length; i++) {
-    if ( hoverNames[i].style.visibility !== 'visible') {
+for (let i = 0; i < hoverNames.length; i++) {
+    if (hoverNames[i].style.visibility !== 'visible') {
             hoverNames[i].addEventListener("mouseover", (e) => {
             console.log(e.target.style.visibility='hidden');
             });
@@ -170,7 +169,6 @@ showhide();
 function timeupdate() {
 const settime = new Date();
 const newtime = document.getElementById('currentTime').innerText = settime.toLocaleTimeString();
-
 }
 timeupdate();
 setInterval(timeupdate, 1000);
@@ -194,21 +192,12 @@ function delay() {
     }, 3000);
 });
 }
-// delay();
+delay();
 
 // 12. Walk the DOM
 // Define function walkTheDOM(node, func)
 // This function should traverse every node in the DOM. Use recursion.
 // On each node, call func(node).
 function walkTheDOM(node, func) {
-    if(node.nodeType == 1) {
-        console.log(node.tagName);
-        node = node.firstChild;
-
-        while (node) {
-            func(node);
-            node = node.nextSilbing;
-        }
-    }
 }
 // walkTheDOM();
