@@ -6,15 +6,17 @@
 // Find the html element that contains "USA".
 // Print that element's contents.
 
-function getUSA() { // ?????????????????????
-    const bubblespan = document.getElementsByTagName('span');
-        for(let i = 0; i < bubblespan.length; i++){
-            if (bubblespan.item(i).innerText === 'USA') {
-                console.log(bubblespan.item(i).innerText);
+function getUSA() {
+    const bubblespan = document.getElementsByTagName('*')
+    for(let i = 0; i < bubblespan.length; i++) {
+        if (bubblespan[i].nextSibling) {
+            if (bubblespan[i].innerText === 'USA') {
+                console.log (bubblespan[i].innerText);
             }
         }
-} 
-// getUSA();
+    }
+}
+getUSA();
 
 // 2. Sales
 // Define function getPeopleInSales()
@@ -33,7 +35,7 @@ function getPeopleInSales() {
         }
     }
 }
-// getPeopleInSales();
+getPeopleInSales();
 
 // 3. Click Here
 // Define function getAnchorChildren()
@@ -46,7 +48,7 @@ function getAnchorChildren() {
         console.log(bubblespan.item(i).innerText);
         }
 }
-// getAnchorChildren();
+getAnchorChildren();
 
 // 4. Hobbies
 // Define function getHobbies()
@@ -60,7 +62,7 @@ function getHobbies() {
             console.log(hob[0].options[i].innerText);
         }
 }
-// getHobbies();
+getHobbies();
 
 // 5. Custom Attribute
 // Define function getCustomAttribute()
@@ -76,7 +78,7 @@ function getCustomAttribute() {
          }
     }
 }
-// getCustomAttribute();
+getCustomAttribute();
 
 // 6. Sum Event
 // Regarding these elements:
@@ -99,7 +101,7 @@ function sum() {
      document.getElementById('sum').innerText = num3;
     };
 }
-// sum();
+sum();
 
 // 7. Skills Event
 // When user selects a skill, create an alert with a message similar to:
@@ -110,11 +112,9 @@ function sum() {
 function setAlert() {
     const first = document.getElementsByName('skills')[0].selectedIndex;
     const second = document.getElementsByName('skills')[0].options;
-    // const third = document.getElementsByName('skills')[0].value; *Grab the value of skill's current option.*
-    // const fourth = document.getElementsByName('skills')[0].innerText; *Grabs all the values inside select.*
-    alert('Are you sure ' +  second[first].innerText + ' is one of your skills?');
+ alert('Are you sure ' +  second[first].innerText + ' is one of your skills?');
 }
-// setAlert();
+setAlert();
 
 // 8. Favorite Color Event
 // NOTE: This is regarding the favoriteColor radio buttons.
@@ -122,20 +122,22 @@ function setAlert() {
 // 	"So you like green more than blue now?"
 // In this example, green is the new value and blue is the old value.
 // Make the background color (of all favoriteColor radio buttons) the newly selected favoriteColor
-
+let oldcolor;
+let newcolor;
 function favColor() {
     const setcolor = document.getElementsByName('favoriteColor');
-    let newcolor = setcolor[0].value;
-
     for (let i = 0; i < setcolor.length; i++) {
-        if (setcolor[i].checked) {
-            let oldcolor = newcolor;
+        setcolor[i].addEventListener("click", () => {
             newcolor = setcolor[i].value;
-            // alert(`So you like ${newcolor} more than ${oldcolor}?`);
+            alert(`So you like ${newcolor} more than ${oldcolor}?`);
+            oldcolor = newcolor;
+            for (let i = 0; i < setcolor.length; i++) {
+                    setcolor[i].style.backgroundColor=newcolor;
+                }
+        })  
         }
     }
-}
-// favColor();
+favColor();
 
 // 9. Show/Hide Event
 // When user hovers over an employees name:
@@ -145,17 +147,19 @@ function favColor() {
 
 function showhide() {
 const hoverNames = document.getElementsByClassName('empName');
-
 for ( let i = 0; i < hoverNames.length; i++) {
-hoverNames[i].addEventListener("mouseover", (e) => {
-    console.log(e.target.style.visibility='hidden');
-});
+    if ( hoverNames[i].style.visibility !== 'visible') {
+            hoverNames[i].addEventListener("mouseover", (e) => {
+            console.log(e.target.style.visibility='hidden');
+            });
+    } else {
+            hoverNames[i].addEventListener("mouseout", (e) => {
+            console.log(e.target.style.visibility='visible');
+            });
+    }
 }
-/* hoverNames.addEventListener("mouseout", (e) => {
-    console.log(e.target.style.visibility='visible');
-}); */
 }
-// showhide();
+showhide();
 
 // 10. Current Time
 // Regarding this element:
@@ -163,8 +167,13 @@ hoverNames[i].addEventListener("mouseover", (e) => {
 // Show the current time in this element in this format: 9:05:23 AM
 // The time should be accurate to the second without having to reload the page.
 
+function timeupdate() {
 const settime = new Date();
 const newtime = document.getElementById('currentTime').innerText = settime.toLocaleTimeString();
+
+}
+timeupdate();
+setInterval(timeupdate, 1000);
 
 // 11. Delay
 // Regarding this element:
@@ -202,4 +211,4 @@ function walkTheDOM(node, func) {
         }
     }
 }
-walkTheDOM();
+// walkTheDOM();
