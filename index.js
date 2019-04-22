@@ -107,13 +107,14 @@ function sum() {
 // 	"Are you sure CSS is one of your skills?"
 // NOTE: no alert should appear when user deselects a skill.
 // select1.addEventListener("select", sendAlert())
+const checked = document.getElementsByName('skills')[0].addEventListener('change', setAlert);
+
 
 function setAlert() {
     const first = document.getElementsByName('skills')[0].selectedIndex;
     const second = document.getElementsByName('skills')[0].options;
     alert ('Are you sure ' +  second[first].innerText + ' is one of your skills?');
 }
-setAlert();
 
 // 8. Favorite Color Event
 // NOTE: This is regarding the favoriteColor radio buttons.
